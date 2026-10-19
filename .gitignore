@@ -46,3 +46,10 @@ Thumbs.db
 # Testing & Coverage
 coverage
 *.lcov
+
+# AI & Agent configuration
+CLAUDE.md
+AGENTS.md
+claude.md
+agents.md
+agent.md

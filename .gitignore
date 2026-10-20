@@ -53,3 +53,8 @@ AGENTS.md
 claude.md
 agents.md
 agent.md
+
+# Admin Panel & Private Data (hidden from push)
+src/pages/admin/
+src/components/admin/
+src/data/mockData.ts

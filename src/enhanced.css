@@ -1,0 +1,1379 @@
+/* ==========================================================================
+   ENHANCED STYLING: PREMIUM LOOK, MICRO-INTERACTIONS, FRAMES & MODULES
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. ROOT VARIABLES & MICRO-INTERACTIONS
+   -------------------------------------------------------------------------- */
+:root {
+  --primary-blue: #1E3A8A;
+  --primary-blue-light: #3B82F6;
+  --primary-blue-wash: #EFF6FF;
+  --accent-amber: #F59E0B;
+  --accent-emerald: #10B981;
+  --accent-rose: #EF4444;
+  --slate-canvas: #0F172A;
+  --subtle-border: rgba(226, 232, 240, 0.85);
+  --soft-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+  --hover-shadow: 0 12px 30px -4px rgba(15, 23, 42, 0.1), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseRed {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+@keyframes typingBounce {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  40% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+@keyframes radarWave {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.fade-up {
+  animation: fadeUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hover-lift {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--hover-shadow) !important;
+}
+
+/* Button Press Scale */
+button:active, .btn:active {
+  transform: scale(0.97) !important;
+}
+
+/* Pulsing Red LIVE Dot */
+.pulse-red {
+  display: inline-flex;
+  align-items: center;
+}
+.pulse-red .live-dot, .nav-live-dot, .live-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #EF4444;
+  animation: pulseRed 1.8s infinite;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+/* Typing Indicator Dots */
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #94A3B8;
+  display: inline-block;
+  animation: typingBounce 1.4s infinite ease-in-out both;
+  margin-right: 3px;
+}
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+.typing-dot:nth-child(3) { animation-delay: 0s; }
+
+/* --------------------------------------------------------------------------
+   2. PROTOTYPE FRAME SWITCHER: DESKTOP 1440px & MOBILE 390px
+   -------------------------------------------------------------------------- */
+.prototype-root-canvas {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.2s ease;
+}
+
+.prototype-top-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #0B1329;
+  border-bottom: 1px solid #1E293B;
+  color: #E2E8F0;
+  padding: 8px 16px;
+  font-size: 12px;
+}
+
+.toolbar-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toolbar-logo-badge {
+  background: #1E3A8A;
+  color: #93C5FD;
+  font-weight: 800;
+  font-family: Poppins, sans-serif;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+}
+
+.toolbar-screen-indicator {
+  color: #94A3B8;
+  font-size: 11px;
+}
+.toolbar-screen-indicator strong {
+  color: #FFFFFF;
+}
+
+.toolbar-frames-group {
+  display: flex;
+  align-items: center;
+  background: #1E293B;
+  padding: 3px;
+  border-radius: 8px;
+  gap: 2px;
+}
+
+.frame-btn {
+  border: 0;
+  background: transparent;
+  color: #94A3B8;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.15s ease;
+}
+.frame-btn.active, .frame-btn:hover {
+  background: #3B82F6;
+  color: #FFFFFF;
+}
+
+.flow-jump-pill {
+  border: 1px solid #334155;
+  background: #1E293B;
+  color: #E2E8F0;
+  padding: 4px 9px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: 0.15s ease;
+}
+.flow-jump-pill:hover {
+  border-color: #60A5FA;
+  background: #283548;
+}
+
+/* Framing Viewport Modes */
+.frame-viewport-wrapper.mode-desktop-1440 {
+  background: #0B0F19;
+  padding: 24px 16px 48px;
+  min-height: calc(100vh - 48px);
+  display: flex;
+  justify-content: center;
+}
+.frame-viewport-wrapper.mode-desktop-1440 .frame-content-inner {
+  width: 1440px;
+  max-width: 100%;
+  background: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  border: 1px solid #334155;
+}
+
+.frame-viewport-wrapper.mode-mobile-390 {
+  background: #0B0F19;
+  padding: 24px 16px 48px;
+  min-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.frame-viewport-wrapper.mode-mobile-390 .frame-content-inner {
+  width: 390px;
+  max-width: 100%;
+  min-height: 844px;
+  background: #FFFFFF;
+  border-radius: 40px;
+  border: 10px solid #1E293B;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+  overflow-y: auto;
+  position: relative;
+}
+
+/* iPhone simulated notch & status bar */
+.iphone-status-bar {
+  width: 390px;
+  max-width: 100%;
+  height: 44px;
+  background: #000000;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 22px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 36px 36px 0 0;
+  position: relative;
+  z-index: 60;
+  margin-bottom: -10px;
+}
+.iphone-notch {
+  width: 120px;
+  height: 24px;
+  background: #1E293B;
+  border-radius: 12px;
+}
+.iphone-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+}
+.battery-icon {
+  width: 18px;
+  height: 10px;
+  border: 1.5px solid white;
+  border-radius: 3px;
+  position: relative;
+}
+.battery-icon::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  top: 2px;
+  width: 2px;
+  height: 4px;
+  background: white;
+  border-radius: 1px;
+}
+
+.frame-viewport-wrapper.mode-responsive .frame-content-inner {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* --------------------------------------------------------------------------
+   3. SOFT BLUE-TO-WHITE GRADIENT HERO & PREMIUM BORDERS
+   -------------------------------------------------------------------------- */
+.hero {
+  background: radial-gradient(135% 100% at 50% 0%, #EBF3FE 0%, #F5F9FF 45%, #FFFFFF 100%) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+  position: relative;
+}
+
+.service-card, .review-card, .admin-card, .panel, .dash-panel {
+  border: 1px solid var(--subtle-border) !important;
+  box-shadow: var(--soft-shadow) !important;
+  border-radius: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   4. PARTNER COLLEGE LOGO STRIP
+   -------------------------------------------------------------------------- */
+.partner-strip {
+  background: #FAFCFF;
+  border-bottom: 1px solid #E2E8F0;
+  padding: 32px 24px;
+}
+.partner-strip-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.partner-strip-heading {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+.partner-logos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+@media (min-width: 1024px) {
+  .partner-logos-grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .partner-logos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.partner-logo-item {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.partner-logo-item:hover {
+  transform: translateY(-2px);
+  border-color: #93C5FD;
+}
+.partner-logo-mark {
+  font-family: Poppins, sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  color: #1E3A8A;
+  background: #EFF6FF;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
+}
+.partner-logo-info strong {
+  display: block;
+  font-size: 11px;
+  color: #0F172A;
+  line-height: 1.25;
+}
+.partner-logo-info small {
+  font-size: 9px;
+  color: #64748B;
+  display: block;
+  margin-top: 2px;
+}
+.partner-strip-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 12px;
+  color: #64748B;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   5. FLOATING WHATSAPP BUTTON & CHAT POPUP
+   -------------------------------------------------------------------------- */
+.whatsapp-floating-wrapper {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 120;
+}
+.whatsapp-btn-trigger {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #FFFFFF;
+  border: 0;
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+  display: grid;
+  place-items: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.whatsapp-pulse-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid #25D366;
+  animation: radarWave 2s infinite ease-out;
+  pointer-events: none;
+}
+.whatsapp-tooltip {
+  position: absolute;
+  right: 70px;
+  background: #0F172A;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.whatsapp-btn-trigger:hover .whatsapp-tooltip {
+  opacity: 1;
+}
+
+.whatsapp-popup {
+  position: absolute;
+  bottom: 74px;
+  right: 0;
+  width: 320px;
+  background: #FFFFFF;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.18);
+  border: 1px solid #E2E8F0;
+  overflow: hidden;
+}
+.whatsapp-popup-header {
+  background: #075E54;
+  color: white;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.whatsapp-avatar-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.whatsapp-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #128C7E;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 13px;
+}
+.whatsapp-avatar-info strong {
+  display: block;
+  font-size: 13px;
+}
+.whatsapp-avatar-info small {
+  font-size: 10px;
+  opacity: 0.8;
+}
+.whatsapp-close-btn {
+  background: transparent;
+  border: 0;
+  color: white;
+  opacity: 0.8;
+}
+.whatsapp-popup-body {
+  padding: 16px;
+  background: #EFEAE2;
+  min-height: 120px;
+}
+.whatsapp-bubble {
+  background: #FFFFFF;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #111827;
+  max-width: 90%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.whatsapp-time {
+  font-size: 9px;
+  color: #6B7280;
+  float: right;
+  margin-top: 4px;
+}
+.whatsapp-popup-footer {
+  padding: 10px;
+  background: #FFFFFF;
+  display: flex;
+  gap: 6px;
+  border-top: 1px solid #E5E7EB;
+}
+.whatsapp-popup-footer input {
+  flex: 1;
+  border: 1px solid #D1D5DB;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 12px;
+  outline: none;
+}
+.whatsapp-popup-footer button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #075E54;
+  color: white;
+  border: 0;
+  display: grid;
+  place-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   6. CLEAR STATUS CHIPS
+   -------------------------------------------------------------------------- */
+.chip-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.chip-paid {
+  background-color: #ECFDF5;
+  color: #065F46;
+  border: 1px solid #A7F3D0;
+}
+
+.chip-pending {
+  background-color: #FFFBEB;
+  color: #92400E;
+  border: 1px solid #FDE68A;
+}
+
+.chip-failed {
+  background-color: #FEF2F2;
+  color: #991B1B;
+  border: 1px solid #FECACA;
+}
+
+.chip-default {
+  background-color: #F1F5F9;
+  color: #475569;
+  border: 1px solid #E2E8F0;
+}
+
+/* --------------------------------------------------------------------------
+   7. STUDENT CHAT (19)
+   -------------------------------------------------------------------------- */
+.chat-module-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.chat-card-shell {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--soft-shadow);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 160px);
+  min-height: 580px;
+}
+.chat-header {
+  padding: 14px 20px;
+  border-bottom: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.chat-counsellor-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.chat-avatar-wrapper {
+  position: relative;
+}
+.chat-avatar-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #1E3A8A;
+  color: #FFFFFF;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+}
+.online-status-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #10B981;
+  border: 2px solid #FFFFFF;
+}
+.role-tag {
+  font-size: 11px;
+  background: #EFF6FF;
+  color: #1E3A8A;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-weight: 700;
+}
+.status-caption {
+  font-size: 11px;
+  color: #64748B;
+  margin: 2px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.green-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+}
+.chat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.chat-action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  color: #475569;
+  display: grid;
+  place-items: center;
+  transition: 0.15s ease;
+}
+.chat-action-btn:hover {
+  background: #F8FAFC;
+  color: #1E3A8A;
+}
+.chat-messages-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.chat-empty-state {
+  margin: auto;
+  text-align: center;
+  max-width: 380px;
+  padding: 30px 20px;
+}
+.empty-chat-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #EFF6FF;
+  color: #1E3A8A;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 16px;
+}
+.chat-bubble-row {
+  display: flex;
+  flex-direction: column;
+}
+.chat-bubble-row.student {
+  align-items: flex-end;
+}
+.chat-bubble-row.admin {
+  align-items: flex-start;
+}
+.chat-bubble {
+  max-width: 75%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-size: 13px;
+  line-height: 1.55;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+}
+.chat-bubble-row.student .chat-bubble {
+  background: #1E3A8A;
+  color: #FFFFFF;
+  border-top-right-radius: 3px;
+}
+.chat-bubble-row.admin .chat-bubble {
+  background: #FFFFFF;
+  color: #1E293B;
+  border: 1px solid #E2E8F0;
+  border-top-left-radius: 3px;
+}
+.bubble-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 10px;
+  opacity: 0.75;
+  margin-bottom: 4px;
+}
+.chat-input-bar {
+  padding: 14px 20px;
+  border-top: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.chat-input-bar input {
+  flex: 1;
+  min-height: 44px;
+  border: 1px solid #CBD5E1;
+  border-radius: 22px;
+  padding: 0 16px;
+  font-size: 13px;
+  outline: none;
+}
+.chat-input-bar input:focus {
+  border-color: #1E3A8A;
+  box-shadow: 0 0 0 3px #DBEAFE;
+}
+
+/* Sidebar & Tab Navigation Badges */
+.nav-counter-badge {
+  margin-left: auto;
+  background: #EF4444;
+  color: white;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 99px;
+}
+.nav-live-pill {
+  margin-left: auto;
+  background: #EF4444;
+  color: white;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+.bottom-tab-badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background: #EF4444;
+  color: white;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 99px;
+}
+
+/* --------------------------------------------------------------------------
+   8. STUDENT LIVE SESSIONS & LIVE ROOM (20)
+   -------------------------------------------------------------------------- */
+.live-now-banner {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  color: white;
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 32px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
+}
+.live-now-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.live-badge {
+  background: #EF4444;
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+}
+.viewer-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #94A3B8;
+  margin-left: 10px;
+}
+.live-now-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.host-info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+.host-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #3B82F6;
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 13px;
+}
+.join-live-btn {
+  padding: 14px 26px !important;
+  font-size: 14px !important;
+  font-weight: 700;
+  background: #EF4444 !important;
+  color: white !important;
+  border: 0;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.join-live-btn:hover {
+  background: #DC2626 !important;
+}
+
+/* Live Room 16:9 Grid */
+.live-room-container {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.live-room-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.live-room-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .live-room-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.video-player-container {
+  background: #000000;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+.video-viewport {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: radial-gradient(#1E293B, #020617);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.stream-slide-view {
+  width: 100%;
+  text-align: center;
+}
+.stream-slide-view h2 {
+  font-size: 22px;
+  margin: 12px 0;
+  color: white;
+}
+.slide-bullet-points {
+  text-align: left;
+  max-width: 480px;
+  margin: 16px auto 0;
+  background: rgba(15, 23, 42, 0.7);
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 13px;
+  line-height: 1.8;
+  color: #E2E8F0;
+}
+.live-room-controls {
+  padding: 14px 20px;
+  background: #0F172A;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.raise-hand-btn {
+  border: 1px solid #334155;
+  background: #1E293B;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.15s ease;
+}
+.raise-hand-btn.active {
+  background: #F59E0B;
+  color: #0F172A;
+  border-color: #F59E0B;
+}
+
+/* --------------------------------------------------------------------------
+   9. ADMIN APP SHELL & NAVIGATION DRAWER
+   -------------------------------------------------------------------------- */
+.admin-app-shell {
+  display: flex;
+  min-height: 100vh;
+  background: #F8FAFC;
+}
+
+.admin-sidebar {
+  width: 260px;
+  background: #0B132B;
+  color: #E2E8F0;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 50;
+  padding: 20px 16px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.admin-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #1E293B;
+  margin-bottom: 16px;
+}
+.admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.admin-brand h3 {
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0;
+  color: white;
+  line-height: 1;
+}
+.admin-brand small {
+  font-size: 10px;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.admin-shield-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: #1E3A8A;
+  color: #60A5FA;
+  display: grid;
+  place-items: center;
+}
+.admin-drawer-close-btn {
+  display: none;
+  background: transparent;
+  border: 0;
+  color: #94A3B8;
+}
+
+.admin-user-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #172554;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+.admin-user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #3B82F6;
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+  display: grid;
+  place-items: center;
+}
+.admin-user-meta strong {
+  display: block;
+  font-size: 12px;
+  color: white;
+}
+.admin-role-badge {
+  font-size: 9px;
+  color: #93C5FD;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.admin-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  overflow-y: auto;
+}
+.admin-nav-item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #94A3B8;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.15s ease;
+  text-align: left;
+}
+.admin-nav-item:hover, .admin-nav-item.active {
+  background: #1E3A8A;
+  color: #FFFFFF;
+}
+.nav-badge-pill {
+  margin-left: auto;
+  background: #1E293B;
+  color: #94A3B8;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 99px;
+}
+.admin-nav-item.active .nav-badge-pill {
+  background: #3B82F6;
+  color: #FFFFFF;
+}
+
+.admin-sidebar-footer {
+  border-top: 1px solid #1E293B;
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.admin-switch-btn, .admin-logout-btn {
+  border: 0;
+  background: transparent;
+  color: #94A3B8;
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.15s ease;
+}
+.admin-switch-btn:hover {
+  background: #1E293B;
+  color: #60A5FA;
+}
+.admin-logout-btn:hover {
+  background: #1E293B;
+  color: #EF4444;
+}
+
+/* Admin Main Viewport */
+.admin-main-wrap {
+  flex: 1;
+  margin-left: 260px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.admin-top-bar {
+  height: 64px;
+  background: #FFFFFF;
+  border-bottom: 1px solid #E2E8F0;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+.admin-top-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.admin-hamburger-btn {
+  display: none;
+  background: transparent;
+  border: 0;
+  color: #475569;
+}
+.admin-global-search {
+  width: 340px;
+  height: 38px;
+  background: #F1F5F9;
+  border-radius: 8px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748B;
+}
+.admin-global-search input {
+  border: 0;
+  background: transparent;
+  width: 100%;
+  font-size: 12px;
+  outline: none;
+}
+.admin-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.admin-profile-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px 4px 4px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.admin-mini-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #1E3A8A;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+.admin-name-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1E293B;
+}
+
+.admin-page-content {
+  padding: 28px;
+  flex: 1;
+}
+
+/* Mobile Sidebar Drawer */
+@media (max-width: 900px) {
+  .admin-sidebar {
+    transform: translateX(-100%);
+  }
+  .admin-sidebar.drawer-open {
+    transform: translateX(0);
+  }
+  .admin-drawer-close-btn {
+    display: block;
+  }
+  .admin-main-wrap {
+    margin-left: 0;
+  }
+  .admin-hamburger-btn {
+    display: block;
+  }
+  .admin-global-search {
+    width: 200px;
+  }
+  .admin-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    z-index: 45;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10. ADMIN DASHBOARD METRICS & REVENUE CHART (A2)
+   -------------------------------------------------------------------------- */
+.admin-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.admin-page-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 4px;
+}
+.admin-page-header p {
+  font-size: 13px;
+  color: #64748B;
+  margin: 0;
+}
+
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+@media (max-width: 1200px) {
+  .admin-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .admin-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.admin-stat-card {
+  background: #FFFFFF;
+  border: 1px solid var(--subtle-border);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: var(--soft-shadow);
+}
+.stat-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.stat-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+}
+.stat-growth-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 99px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.stat-growth-badge.positive {
+  background: #ECFDF5;
+  color: #059669;
+}
+.stat-growth-badge.neutral {
+  background: #EFF6FF;
+  color: #2563EB;
+}
+.stat-growth-badge.negative {
+  background: #FEF2F2;
+  color: #DC2626;
+}
+.stat-card-body h3 {
+  font-family: Poppins, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 2px;
+}
+.stat-card-body p {
+  font-size: 12px;
+  color: #64748B;
+  margin: 0;
+}
+
+/* Revenue SVG Chart Card */
+.revenue-chart-card {
+  background: #FFFFFF;
+  border: 1px solid var(--subtle-border);
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 24px;
+  box-shadow: var(--soft-shadow);
+}
+.revenue-svg {
+  width: 100%;
+  height: auto;
+  max-height: 220px;
+}
+
+/* --------------------------------------------------------------------------
+   11. ADMIN CHAT THREE-PANEL LAYOUT (A6)
+   -------------------------------------------------------------------------- */
+.admin-chat-inbox-shell {
+  background: #FFFFFF;
+  border: 1px solid var(--subtle-border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--soft-shadow);
+  height: calc(100vh - 150px);
+  min-height: 600px;
+}
+.admin-chat-three-panels {
+  display: flex;
+  height: 100%;
+}
+.admin-chat-panel-conversations {
+  width: 320px;
+  border-right: 1px solid #E2E8F0;
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  shrink: 0;
+}
+.panel-header {
+  padding: 14px 16px;
+  border-bottom: 1px solid #E2E8F0;
+}

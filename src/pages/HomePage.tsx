@@ -13,6 +13,7 @@ import { ReviewCard } from "../components/cards/ReviewCard"
 import { Button } from "../components/common/Button"
 import { CTA } from "../components/common/CTA"
 import { FAQ } from "../components/common/FAQ"
+import { PartnerLogos } from "../components/common/PartnerLogos"
 import { SectionTitle } from "../components/common/SectionTitle"
 import { heroImage, reviews, services } from "../data"
 import type { Page } from "../types"
@@ -84,6 +85,7 @@ export function HomePage({ go }: HomePageProps) {
           </div>
         </div>
       </section>
+      <PartnerLogos />
       <section className="stats">
         <div>
           <strong>94%</strong>

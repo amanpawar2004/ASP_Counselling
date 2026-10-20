@@ -16,53 +16,88 @@ export function DashboardShell({ page, go, children }: DashboardShellProps) {
       <aside className="dash-sidebar">
         <Logo go={go} />
         <nav>
-          {dashNav.map(([p, label, I]) => (
+          {dashNav.map(([p, label, Icon, extra]) => (
             <button
-              className={page === p ? "active" : ""}
+              className={`dash-nav-btn ${page === p ? "active" : ""}`}
               onClick={() => go(p)}
               key={p}
             >
-              <I />
-              {label}
+              <span className="icon-with-badge">
+                <Icon size={19} />
+                {extra?.isLive && <span className="nav-live-dot pulse-red" />}
+              </span>
+              <span className="nav-label">{label}</span>
+              {extra?.badge && (
+                <span className="nav-counter-badge">{extra.badge}</span>
+              )}
+              {extra?.isLive && <span className="nav-live-pill">LIVE</span>}
             </button>
           ))}
           <button
-            className={page === "settings" ? "active" : ""}
+            className={`dash-nav-btn ${page === "settings" ? "active" : ""}`}
             onClick={() => go("settings")}
           >
-            <Settings />
-            Settings
+            <Settings size={19} />
+            <span className="nav-label">Settings</span>
           </button>
         </nav>
-        <button onClick={() => go("home")}>
-          <LogOut /> Logout
+        <button className="dash-logout-btn" onClick={() => go("home")}>
+          <LogOut size={18} /> <span>Sign Out</span>
         </button>
       </aside>
+
       <main className="dash-main">
         <header>
-          <div>
-            <Search />
-            <input placeholder="Search your dashboard" />
+          <div className="dash-search-box">
+            <Search size={16} />
+            <input placeholder="Search colleges, orders, webinars..." />
           </div>
-          <button>
-            <Bell />
-            <b />
+          <button
+            className="dash-notify-btn"
+            title="Notifications"
+            onClick={() => go("chat")}
+          >
+            <Bell size={18} />
+            <span className="notify-badge" />
           </button>
-          <button className="avatar">AK</button>
+          <button
+            className="avatar"
+            onClick={() => go("profile")}
+            title="Aarav Kumar (Profile)"
+          >
+            AK
+          </button>
         </header>
         {children}
       </main>
+
+      {/* Mobile Bottom Tab Bar */}
       <nav className="bottom-tabs">
-        {dashNav.map(([p, label, I]) => (
+        {dashNav.slice(0, 5).map(([p, label, Icon, extra]) => (
           <button
-            className={page === p ? "active" : ""}
+            className={`bottom-tab-item ${page === p ? "active" : ""}`}
             onClick={() => go(p)}
             key={p}
           >
-            <I />
-            {label}
+            <span className="bottom-tab-icon-wrapper">
+              <Icon size={19} />
+              {extra?.badge && (
+                <span className="bottom-tab-badge">{extra.badge}</span>
+              )}
+              {extra?.isLive && (
+                <span className="bottom-tab-live-dot pulse-red" />
+              )}
+            </span>
+            <span>{label}</span>
           </button>
         ))}
+        <button
+          className={`bottom-tab-item ${page === "settings" ? "active" : ""}`}
+          onClick={() => go("settings")}
+        >
+          <Settings size={19} />
+          <span>More</span>
+        </button>
       </nav>
     </div>
   )
